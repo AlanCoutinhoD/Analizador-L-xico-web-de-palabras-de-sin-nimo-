@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Diccionario de Sinonimos</title>
+    <style>
+        body {
+            font-family: 'Times New Roman', serif;
+            background-color: #fefefe;
+            color: #000;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background: #fafafa;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        h1, h2 {
+            color: #333;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            padding: 10px;
+            border: 1px solid #999;
+            border-radius: 2px;
+            margin-bottom: 10px;
+            font-family: 'Times New Roman', serif;
+            font-size: 16px;
+            background-color: #fefefe;
+        }
+        button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 2px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #222;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            font-family: 'Times New Roman', serif;
+        }
+        th, td {
+            border: 1px solid #aaa;
+            padding: 12px;
+            text-align: left;
+        }
+        th {
+            background-color: #e0e0e0;
+        }
+        tr:nth-child(even) {
+            background-color: #f6f6f6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diccionario de Sinonimos</h1>
+        <form action="/" method="post">
+            <textarea name="texto" rows="10" placeholder="Ingrese el texto para analizar..."></textarea>
+            <button type="submit">Analizar</button>
+        </form>
+
+        {% if resultados %}
+        <h2>Resultados del Análisis</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Línea</th>
+                    <th>Texto Original</th>
+                    <th>Texto Resultante</th>
+                    <th>Cambiadas</th>
+                    <th>Números</th>
+                    <th>Símbolos</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in resultados %}
+                <tr>
+                    <td>{{ resultado.linea }}</td>
+                    <td>{{ resultado.entrada }}</td>
+                    <td>{{ resultado.resultante }}</td>
+                    <td>{{ resultado.cambiadas }}</td>
+                    <td>{{ resultado.numeros }}</td>
+                    <td>{{ resultado.simbolos }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% endif %}
+    </div>
+</body>
+</html>
